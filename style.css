@@ -7,13 +7,20 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Navbar */
+/* ================= NAVBAR ================= */
 nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 50px;
-    background: white;
     align-items: center;
+
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 nav ul {
@@ -41,9 +48,9 @@ nav a:hover {
     color: #555;
 }
 
-/* Hero Section */
+/* ================= HERO SECTION ================= */
 header {
-    height: 90vh;
+    height: 100vh;
     background: url('https://images.unsplash.com/photo-1552196563-55cd4e45efb3') no-repeat center/cover;
     display: flex;
     flex-direction: column;
@@ -53,6 +60,7 @@ header {
 
     color: white;
     position: relative;
+    padding-top: 80px;
 }
 
 /* Overlay */
@@ -73,15 +81,19 @@ header * {
     z-index: 1;
 }
 
+/* Gradient Heading */
 header h1 {
-    font-size: 50px;
+    font-size: 60px;
+    background: linear-gradient(45deg, #fff, #ddd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header p {
     font-size: 20px;
 }
 
-/* Button */
+/* ================= BUTTON ================= */
 button {
     padding: 12px 25px;
     border: none;
@@ -90,13 +102,15 @@ button {
     cursor: pointer;
     border-radius: 25px;
     transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 button:hover {
-    background: #444;
+    transform: scale(1.05);
+    background: #333;
 }
 
-/* Sections spacing */
+/* ================= SECTIONS ================= */
 .about,
 .classes,
 .contact {
@@ -104,7 +118,22 @@ button:hover {
     text-align: center;
 }
 
-/* Classes Section */
+/* Section headings */
+h2 {
+    font-size: 32px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: black;
+    display: block;
+    margin: 10px auto;
+}
+
+/* ================= CLASSES ================= */
 .classes {
     background: #f9f9f9;
 }
@@ -120,17 +149,26 @@ button:hover {
 .card {
     background: white;
     padding: 20px;
-    width: 250px;
+    width: 260px;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.4s;
 }
 
+/* Card image */
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Card hover effect */
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-/* Contact Section */
+/* ================= CONTACT ================= */
 .contact form {
     display: flex;
     flex-direction: column;
@@ -141,16 +179,18 @@ button:hover {
 
 .contact input,
 .contact textarea {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    background: #f1f1f1;
     font-family: 'Poppins', sans-serif;
 }
 
-/* Footer */
+/* ================= FOOTER ================= */
 footer {
     text-align: center;
     padding: 20px;
     background: #111;
     color: white;
+    letter-spacing: 1px;
 }

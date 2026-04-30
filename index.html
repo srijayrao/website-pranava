@@ -1,84 +1,706 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Pranava Yoga Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranava Yoga and Sound healing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #7A9E7E;
+  --sage-light: #C8DCC9;
+  --sage-dark: #3D5C40;
+  --terra: #C4826A;
+  --terra-light: #EDD9D0;
+  --beige: #F5EFE6;
+  --beige-dark: #E8DDD0;
+  --cream: #FAFAF7;
+  --charcoal: #2C2C2A;
+  --muted: #6B6B68;
+  --gold: #B8986A;
+  --gold-light: #E8D9BE;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 4rem;
+  background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184,152,106,0.15);
+  transition: all 0.3s ease;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); letter-spacing: 0.02em; text-decoration: none; }
+.nav-logo span { color: var(--terra); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--terra); }
+.nav-cta { background: var(--charcoal); color: var(--cream); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.65rem 1.6rem; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--terra); }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+  background: var(--beige);
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 6rem 4rem 6rem 4rem;
+  position: relative;
+}
+.hero-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--terra); }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--charcoal); margin-bottom: 0.5rem; }
+.hero-title em { font-style: italic; color: var(--terra); }
+.hero-subtitle { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 420px; margin: 1.5rem 0 2.5rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--terra); color: white; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; border-radius: 2px; text-decoration: none; transition: all 0.25s; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--sage-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--charcoal); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; border-radius: 2px; text-decoration: none; border: 1px solid var(--charcoal); transition: all 0.25s; cursor: pointer; }
+.btn-outline:hover { background: var(--charcoal); color: var(--cream); }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--beige-dark); }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--charcoal); }
+.stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+.hero-right {
+  position: relative; overflow: hidden;
+  background: var(--sage-dark);
+}
+.hero-image-grid {
+  position: absolute; inset: 0;
+  display: grid; grid-template-rows: 1fr 1fr;
+  gap: 3px;
+}
+.hero-img-top {
+  background: linear-gradient(135deg, #7A9E7E 0%, #3D5C40 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7rem; color: rgba(255,255,255,0.12);
+}
+.hero-img-bottom {
+  background: linear-gradient(135deg, #C4826A 0%, #8B5A44 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-badge {
+  position: absolute; bottom: 2.5rem; left: -1.5rem;
+  background: var(--cream); border-radius: 4px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(44,44,42,0.12);
+  min-width: 200px;
+}
+.hero-badge-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.hero-badge-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); }
+.lotus-svg { position: absolute; top: 1.5rem; right: 2rem; opacity: 0.08; }
+.scroll-hint { position: absolute; bottom: 2.5rem; left: 4rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.scroll-line { width: 40px; height: 1px; background: var(--muted); display: inline-block; }
+
+/* SECTIONS */
+section { padding: 6rem 4rem; }
+.section-eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-eyebrow::before { content: ''; display: inline-block; width: 1.5rem; height: 1px; background: var(--terra); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--charcoal); }
+.section-title em { font-style: italic; color: var(--terra); }
+
+/* ABOUT */
+.about { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-visual { position: relative; }
+.about-img-main {
+  width: 100%; aspect-ratio: 4/5;
+  background: linear-gradient(160deg, var(--sage) 0%, var(--sage-dark) 100%);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 9rem; color: rgba(255,255,255,0.1);
+}
+.about-img-accent {
+  position: absolute; bottom: -2rem; right: -2rem;
+  width: 55%; aspect-ratio: 1;
+  background: var(--terra-light); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  border: 6px solid var(--cream);
+}
+.about-badge-inner { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; text-align: center; color: var(--charcoal); }
+.about-badge-inner span { display: block; font-size: 0.75rem; font-family: 'DM Sans', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+.about-text p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
+.about-signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.8rem; color: var(--terra); margin-top: 2rem; }
+
+/* OFFERINGS */
+.offerings { background: var(--charcoal); }
+.offerings .section-eyebrow { color: var(--gold); }
+.offerings .section-eyebrow::before { background: var(--gold); }
+.offerings .section-title { color: var(--cream); }
+.offerings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3.5rem; }
+.offering-card {
+  background: rgba(255,255,255,0.04);
+  padding: 2.5rem 2rem;
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+  cursor: default;
+}
+.offering-card:hover { background: rgba(255,255,255,0.08); }
+.offering-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+.offering-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.04); position: absolute; top: 1rem; right: 1.5rem; line-height: 1; }
+.offering-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--cream); margin-bottom: 0.75rem; }
+.offering-desc { font-size: 0.88rem; font-weight: 300; color: rgba(250,250,247,0.55); line-height: 1.8; }
+.offering-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.offering-tag { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.4); }
+.offering-card.featured { background: var(--terra); border-color: var(--terra); }
+.offering-card.featured:hover { background: #b87460; }
+.offering-card.featured .offering-name { color: white; }
+.offering-card.featured .offering-desc { color: rgba(255,255,255,0.75); }
+.offering-card.featured .offering-tag { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+.offering-card.featured .offering-num { color: rgba(255,255,255,0.08); }
+
+/* INSTRUCTORS */
+.instructors { background: var(--beige); }
+.instructors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 3.5rem; }
+.instructor-card { background: var(--cream); border-radius: 4px; overflow: hidden; border: 1px solid var(--beige-dark); }
+.instructor-photo {
+  width: 100%; aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative; overflow: hidden;
+}
+.instructor-photo.chanakya { background: linear-gradient(135deg, #3D5C40 0%, #7A9E7E 60%, #C8DCC9 100%); }
+.instructor-photo.meghana { background: linear-gradient(135deg, #8B5A44 0%, #C4826A 60%, #EDD9D0 100%); }
+.instructor-initials { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.25); letter-spacing: -0.02em; }
+.instructor-info { padding: 2rem; }
+.instructor-role { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 0.5rem; }
+.instructor-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--charcoal); margin-bottom: 1rem; }
+.instructor-bio { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+.instructor-specialties { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+.spec-tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.75rem; background: var(--beige); border: 1px solid var(--beige-dark); color: var(--muted); border-radius: 2px; }
+
+/* SCHEDULE */
+.schedule { background: var(--cream); }
+.schedule-tabs { display: flex; gap: 0; margin-top: 2.5rem; border-bottom: 1px solid var(--beige-dark); }
+.tab-btn { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 0.75rem 1.5rem; background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; margin-bottom: -1px; }
+.tab-btn.active { color: var(--terra); border-bottom-color: var(--terra); }
+.schedule-grid { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.schedule-row { display: grid; grid-template-columns: 90px 1fr 140px 100px 80px; align-items: center; gap: 1.5rem; padding: 1.25rem 1.5rem; border-radius: 3px; border: 1px solid var(--beige-dark); background: var(--cream); transition: border-color 0.2s; }
+.schedule-row:hover { border-color: var(--terra); }
+.sched-time { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--charcoal); }
+.sched-class { font-weight: 400; font-size: 0.92rem; color: var(--charcoal); }
+.sched-instructor { font-size: 0.82rem; color: var(--muted); }
+.sched-level { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 2px; display: inline-block; width: fit-content; }
+.level-all { background: var(--sage-light); color: var(--sage-dark); }
+.level-beg { background: var(--terra-light); color: #6B3520; }
+.level-int { background: var(--gold-light); color: #5C4820; }
+.sched-spots { font-size: 0.8rem; color: var(--muted); text-align: right; }
+.sched-spots strong { color: var(--terra); display: block; font-size: 0.92rem; }
+
+/* PRICING */
+.pricing { background: var(--beige); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.pricing-card { background: var(--cream); border: 1px solid var(--beige-dark); border-radius: 4px; padding: 2.5rem 2rem; position: relative; transition: transform 0.25s; }
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.popular { background: var(--charcoal); border-color: var(--charcoal); }
+.popular-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--terra); color: white; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 0 0 4px 4px; white-space: nowrap; }
+.pricing-tier { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.pricing-card.popular .pricing-tier { color: rgba(250,250,247,0.5); }
+.pricing-price { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--charcoal); line-height: 1; }
+.pricing-card.popular .pricing-price { color: var(--cream); }
+.pricing-price sup { font-size: 1.2rem; vertical-align: top; margin-top: 0.6rem; }
+.pricing-price sub { font-size: 0.9rem; color: var(--muted); }
+.pricing-card.popular .pricing-price sub { color: rgba(250,250,247,0.5); }
+.pricing-divider { height: 1px; background: var(--beige-dark); margin: 1.5rem 0; }
+.pricing-card.popular .pricing-divider { background: rgba(255,255,255,0.1); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.pricing-features li { font-size: 0.85rem; font-weight: 300; color: var(--muted); display: flex; align-items: center; gap: 0.6rem; }
+.pricing-card.popular .pricing-features li { color: rgba(250,250,247,0.7); }
+.pricing-features li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+.pricing-card.popular .pricing-features li::before { background: var(--terra); }
+.pricing-action { margin-top: 2rem; display: block; text-align: center; padding: 0.85rem; border-radius: 2px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all 0.2s; border: 1px solid var(--charcoal); color: var(--charcoal); }
+.pricing-action:hover { background: var(--charcoal); color: var(--cream); }
+.pricing-card.popular .pricing-action { background: var(--terra); border-color: var(--terra); color: white; }
+.pricing-card.popular .pricing-action:hover { background: #b87460; }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--cream); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.testimonial-card { background: var(--beige); border-radius: 4px; padding: 2rem; border: 1px solid var(--beige-dark); }
+.testimonial-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1.25rem; }
+.testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--charcoal); line-height: 1.75; margin-bottom: 1.5rem; }
+.testimonial-author { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; color: var(--muted); }
+.testimonial-author span { color: var(--terra); display: block; font-size: 0.7rem; margin-top: 0.2rem; }
+
+/* CONTACT */
+.contact { background: var(--charcoal); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact .section-eyebrow { color: var(--gold); }
+.contact .section-eyebrow::before { background: var(--gold); }
+.contact .section-title { color: var(--cream); }
+.contact-info { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
+.contact-item { display: flex; gap: 1rem; }
+.contact-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.06); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.contact-item-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,250,247,0.4); margin-bottom: 0.3rem; }
+.contact-item-val { font-size: 0.9rem; color: var(--cream); font-weight: 300; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,250,247,0.4); }
+.form-field input, .form-field select, .form-field textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
+  color: var(--cream);
+  font-size: 0.88rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.form-field input::placeholder, .form-field textarea::placeholder { color: rgba(250,250,247,0.2); }
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-color: var(--terra); }
+.form-field select option { background: var(--charcoal); }
+.form-field textarea { resize: vertical; min-height: 100px; }
+.form-submit { background: var(--terra); color: white; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem; border-radius: 2px; border: none; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+.form-submit:hover { background: #b87460; }
+
+/* FOOTER */
+footer { background: #1A1A18; padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--cream); }
+.footer-logo span { color: var(--terra); }
+.footer-center { text-align: center; font-size: 0.75rem; color: rgba(250,250,247,0.3); line-height: 1.7; }
+.footer-socials { display: flex; gap: 1rem; }
+.social-link { width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: rgba(250,250,247,0.4); text-decoration: none; transition: all 0.2s; }
+.social-link:hover { background: var(--terra); color: white; }
+
+/* DECORATIVE */
+.divider-ornament { text-align: center; padding: 1rem; color: var(--terra); opacity: 0.4; font-size: 1.5rem; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-eyebrow { animation: fadeUp 0.6s 0.1s both; }
+.hero-title { animation: fadeUp 0.7s 0.25s both; }
+.hero-subtitle { animation: fadeUp 0.7s 0.4s both; }
+.hero-actions { animation: fadeUp 0.7s 0.55s both; }
+.hero-stats { animation: fadeUp 0.7s 0.7s both; }
+
+/* FLOATING ORNAMENT */
+.ornament { position: absolute; pointer-events: none; opacity: 0.06; font-family: 'Cormorant Garamond', serif; }
+
+/* MAP placeholder */
+.map-placeholder { height: 220px; background: rgba(255,255,255,0.04); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; margin-top: 2rem; color: rgba(255,255,255,0.2); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { height: 300px; }
+  .hero-left { padding: 5rem 1.5rem 3rem; }
+  section { padding: 4rem 1.5rem; }
+  .about { grid-template-columns: 1fr; gap: 3rem; }
+  .offerings-grid { grid-template-columns: 1fr; }
+  .instructors-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; gap: 3rem; }
+  .schedule-row { grid-template-columns: 80px 1fr 100px; }
+  .sched-spots, .sched-level { display: none; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <h2>Pranava Yoga</h2>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#classes">Classes</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Pranava <span>Yoga and Sound healing</span></a>
+  <ul class="nav-links">
+    <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#instructors">Instructors</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Class</a>
+</nav>
 
-    <!-- Hero Section -->
-    <header id="home">
-        <h1>Find Your Inner Peace</h1>
-        <p>Join our yoga journey for a healthier life</p>
-        <button>Join Now</button>
-    </header>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Hyderabad's Sanctuary of Stillness</div>
+    <h1 class="hero-title">Find Your <em>Inner</em><br>Equilibrium</h1>
+    <p class="hero-subtitle">A holistic wellness studio in the heart of Hyderabad offering yoga, prenatal care, and sound healing — guided by masters of their craft.</p>
+    <div class="hero-actions">
+      <a href="#schedule" class="btn-primary">Explore Schedule</a>
+      <a href="#offerings" class="btn-outline">Our Offerings</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Students</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Offerings</div>
+      </div>
+      <div>
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Years Combined</div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span class="scroll-line"></span> Scroll to explore
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-grid">
+      <div class="hero-img-top">☽</div>
+      <div class="hero-img-bottom" style="display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(255,255,255,0.1);">✦</div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-label">Next class</div>
+      <div class="hero-badge-val">Hatha Yoga · 7:00 AM</div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2>About Us</h2>
-        <p>
-            We help you achieve balance through yoga, meditation, and mindful living.
-            Our studio provides a calm and peaceful environment for all levels.
-        </p>
-    </section>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-main">॰</div>
+    <div class="about-img-accent">
+      <div class="about-badge-inner">
+        2026
+        <span>Est. in Hyderabad</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">Rooted in tradition,<br>guided by <em>compassion</em></h2>
+    <p style="margin-top:1.5rem;">Pranava Yoga Studio was born from a simple belief: that ancient wisdom, when held with modern care, can transform lives. Nestled in Hyderabad, we have spent over a decade creating a space where every body is welcomed — regardless of age, ability, or experience.</p>
+    <p>From our traditional yoga classes to our specialised prenatal program and deeply restorative sound healing sessions, each offering is crafted to meet you exactly where you are on your journey.</p>
+    <div class="about-signature">— Pranava Studio, Hyderabad</div>
+  </div>
+</section>
 
-    <!-- Classes Section -->
-    <section class="classes" id="classes">
-        <h2>Our Classes</h2>
+<!-- OFFERINGS -->
+<section class="offerings" id="offerings">
+  <div class="section-eyebrow">What We Offer</div>
+  <h2 class="section-title" style="color:var(--cream);">Three paths to your<br><em>truest self</em></h2>
+  <div class="offerings-grid">
+    <div class="offering-card">
+      <span class="offering-num">01</span>
+      <span class="offering-icon">🧘</span>
+      <h3 class="offering-name">Yoga</h3>
+      <p class="offering-desc">From flowing Vinyasa to grounding Hatha and restorative Yin — our core yoga classes build strength, flexibility, and inner calm across all levels.</p>
+      <div class="offering-tags">
+        <span class="offering-tag">Hatha</span>
+        <span class="offering-tag">Vinyasa</span>
+        <span class="offering-tag">Yin</span>
+        <span class="offering-tag">All Levels</span>
+      </div>
+    </div>
+    <div class="offering-card featured">
+      <span class="offering-num">02</span>
+      <span class="offering-icon">🌿</span>
+      <h3 class="offering-name">Prenatal Yoga</h3>
+      <p class="offering-desc">A gentle, nurturing practice designed specifically for mothers-to-be. Safe, supportive sequences ease discomfort, build strength, and foster a deep bond with your baby.</p>
+      <div class="offering-tags">
+        <span class="offering-tag">Trimester-Safe</span>
+        <span class="offering-tag">Breathwork</span>
+        <span class="offering-tag">Gentle Flow</span>
+      </div>
+    </div>
+    <div class="offering-card">
+      <span class="offering-num">03</span>
+      <span class="offering-icon">🔔</span>
+      <h3 class="offering-name">Sound Healing</h3>
+      <p class="offering-desc">Tibetan singing bowls, crystal bowls, and tuning forks orchestrate a deeply immersive journey into relaxation, healing old patterns and restoring energetic balance.</p>
+      <div class="offering-tags">
+        <span class="offering-tag">Tibetan Bowls</span>
+        <span class="offering-tag">Meditation</span>
+        <span class="offering-tag">Energy Work</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="class-container">
-
-            <div class="card">
-                <h3>Hatha Yoga</h3>
-                <p>Perfect for beginners to improve flexibility and posture.</p>
-            </div>
-
-            <div class="card">
-                <h3>Vinyasa Yoga</h3>
-                <p>Dynamic movements synced with breath for energy and strength.</p>
-            </div>
-
-            <div class="card">
-                <h3>Meditation</h3>
-                <p>Relax your mind and reduce stress with guided sessions.</p>
-            </div>
-
+<!-- INSTRUCTORS -->
+<section class="instructors" id="instructors">
+  <div class="section-eyebrow">Meet the Guides</div>
+  <h2 class="section-title">Wisdom you can<br><em>trust</em></h2>
+  <div class="instructors-grid">
+    <div class="instructor-card">
+      <div class="instructor-photo chanakya">
+        <span class="instructor-initials">CS</span>
+      </div>
+      <div class="instructor-info">
+        <div class="instructor-role">Lead Instructor · Yoga & Sound Healing</div>
+        <h3 class="instructor-name">Mr. Chanakya Simha</h3>
+        <p class="instructor-bio">With over a decade of dedicated practice and teaching, Chanakya brings a rare blend of classical yoga lineage and contemporary therapeutic understanding. Trained in the Himalayan tradition and certified in sound healing therapy, he guides students with quiet authority and deep empathy — meeting each person exactly where they are.</p>
+        <div class="instructor-specialties">
+          <span class="spec-tag">Hatha Yoga</span>
+          <span class="spec-tag">Vinyasa</span>
+          <span class="spec-tag">Sound Healing</span>
+          <span class="spec-tag">Meditation</span>
+          <span class="spec-tag">Breathwork</span>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-photo meghana">
+        <span class="instructor-initials">M</span>
+      </div>
+      <div class="instructor-info">
+        <div class="instructor-role">Senior Instructor · Prenatal & Restorative Yoga</div>
+        <h3 class="instructor-name">Ms. Meghana</h3>
+        <p class="instructor-bio">Meghana's approach to yoga is rooted in compassion and inclusion. A specialist in prenatal and postnatal yoga, she has supported hundreds of mothers through their pregnancy journeys with warmth, knowledge, and unwavering care. Her restorative classes are cherished by students of all backgrounds for their healing, nurturing quality.</p>
+        <div class="instructor-specialties">
+          <span class="spec-tag">Prenatal Yoga</span>
+          <span class="spec-tag">Postnatal</span>
+          <span class="spec-tag">Yin Yoga</span>
+          <span class="spec-tag">Restorative</span>
+          <span class="spec-tag">Women's Wellness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Us</h2>
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+  <div class="section-eyebrow">Weekly Schedule</div>
+  <h2 class="section-title">Find your <em>rhythm</em></h2>
+  <div class="schedule-tabs">
+    <button class="tab-btn active" onclick="filterSchedule('all', this)">All Classes</button>
+    <button class="tab-btn" onclick="filterSchedule('yoga', this)">Yoga</button>
+    <button class="tab-btn" onclick="filterSchedule('prenatal', this)">Prenatal</button>
+    <button class="tab-btn" onclick="filterSchedule('sound', this)">Sound Healing</button>
+  </div>
+  <div class="schedule-grid" id="scheduleGrid">
+    <!-- rows injected by JS -->
+  </div>
+</section>
 
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5"></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-eyebrow">Memberships</div>
+  <h2 class="section-title">Choose your <em>path</em></h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Drop-In</div>
+      <div class="pricing-price"><sup>₹</sup>699</div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;font-weight:300;">per single class</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Access to any single class</li>
+        <li>Valid for all class types</li>
+        <li>Book up to 24 hrs in advance</li>
+        <li>Studio mat provided</li>
+      </ul>
+      <a href="#contact" class="pricing-action">Book a Class</a>
+    </div>
+    <div class="pricing-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="pricing-tier">Monthly Unlimited</div>
+      <div class="pricing-price"><sup>₹</sup>3,499<sub>/mo</sub></div>
+      <p style="font-size:0.8rem;color:rgba(250,250,247,0.4);margin-top:0.5rem;font-weight:300;">billed monthly</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Unlimited classes all month</li>
+        <li>Priority booking</li>
+        <li>One free sound healing session</li>
+        <li>Locker room access</li>
+        <li>10% off merchandise</li>
+      </ul>
+      <a href="#contact" class="pricing-action">Get Started</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Class Pack · 10</div>
+      <div class="pricing-price"><sup>₹</sup>5,999</div>
+      <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;font-weight:300;">10 classes · valid 3 months</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>10 classes of your choice</li>
+        <li>Mix any class type</li>
+        <li>Valid for 90 days</li>
+        <li>Shareable with a partner</li>
+      </ul>
+      <a href="#contact" class="pricing-action">Buy Pack</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Pranava Yoga Studio | All Rights Reserved</p>
-    </footer>
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-eyebrow">Student Voices</div>
+  <h2 class="section-title">Transformed <em>lives</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Chanakya sir's sound healing session was unlike anything I had experienced before. I left feeling lighter — physically and emotionally. Pranava is truly a sanctuary."</p>
+      <div class="testimonial-author">Priya Reddy <span>Banjara Hills, Hyderabad</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Meghana's prenatal yoga classes were my lifeline during my third trimester. Her calm, knowledgeable approach made every session feel safe and deeply nourishing."</p>
+      <div class="testimonial-author">Ananya Krishnan <span>Kondapur, Hyderabad</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"As a complete beginner, I was nervous. Within two weeks of Hatha classes I felt stronger, calmer, and more grounded than ever. The teachers here are exceptional."</p>
+      <div class="testimonial-author">Karthik Sharma <span>Madhapur, Hyderabad</span></div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-title" style="color:var(--cream);">Begin your <em>journey</em></h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Studio Address</div>
+          <div class="contact-item-val">Pranava Yoga Studio, Nandanam Building, Sadhana infinity International School, ICICI Bank Ltd,<br>Nallagandla - Tellapur Rd, Hyderabad — 502034</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-val">+91 91778 86090</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-val">hello@Pranavayoga.in</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-item-label">Studio Hours</div>
+          <div class="contact-item-val">Mon – Sat · 6:00 AM – 8:00 PM<br>Sunday · 7:00 AM – 1:00 PM</div>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder">📍 Tellapur, Hyderabad</div>
+  </div>
+  <div>
+    <p style="color:rgba(250,250,247,0.5);font-size:0.9rem;font-weight:300;line-height:1.8;margin-bottom:2rem;">Ready to take the first step? Fill out the form and we'll get back to you within 24 hours to help you find the perfect class.</p>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" placeholder="+91 00000 00000">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com">
+      </div>
+      <div class="form-field">
+        <label>I'm Interested In</label>
+        <select>
+          <option value="">Select a class type…</option>
+          <option>Yoga (Hatha / Vinyasa / Yin)</option>
+          <option>Prenatal Yoga</option>
+          <option>Sound Healing</option>
+          <option>Monthly Membership</option>
+          <option>Corporate Wellness</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message (optional)</label>
+        <textarea placeholder="Tell us about your experience level or any questions…"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(event)">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pranava <span>Yoga and Sound healing</span></div>
+  <div class="footer-center">
+    © 2025 Pranava Yoga Studio · Hyderabad<br>
+    Crafted with intention · All rights reserved
+  </div>
+  <div class="footer-socials">
+    <a href="#" class="https://www.instagram.com/pranava_yoga_soundhealing?igsh=cXFhYjlxZXdnemxl">instagram</a>
+    <a href="#" class="social-link">fb</a>
+    <a href="#" class="social-link">yt</a>
+    <a href="#" class="social-link">wa</a>
+  </div>
+</footer>
+
+<script>
+const scheduleData = [
+  { time: '6:00 AM', name: 'Morning Hatha', instructor: 'Mr. Chanakya Simha', level: 'All Levels', spots: 4, type: 'yoga' },
+  { time: '7:30 AM', name: 'Vinyasa Flow', instructor: 'Mr. Chanakya Simha', level: 'Intermediate', spots: 6, type: 'yoga' },
+  { time: '9:00 AM', name: 'Prenatal Yoga', instructor: 'Ms. Meghana', level: 'Beginners', spots: 3, type: 'prenatal' },
+  { time: '10:30 AM', name: 'Yin Yoga', instructor: 'Ms. Meghana', level: 'All Levels', spots: 8, type: 'yoga' },
+  { time: '5:30 PM', name: 'Evening Vinyasa', instructor: 'Mr. Chanakya Simha', level: 'All Levels', spots: 5, type: 'yoga' },
+  { time: '7:00 PM', name: 'Sound Healing Circle', instructor: 'Mr. Chanakya Simha', level: 'All Levels', spots: 2, type: 'sound' },
+  { time: '7:30 PM', name: 'Prenatal & Breathwork', instructor: 'Ms. Meghana', level: 'Beginners', spots: 5, type: 'prenatal' },
+  { time: '8:00 AM', name: 'Weekend Sound Bath', instructor: 'Mr. Chanakya Simha', level: 'All Levels', spots: 10, type: 'sound' },
+];
+
+const levelClass = { 'All Levels': 'level-all', 'Beginners': 'level-beg', 'Intermediate': 'level-int' };
+
+function renderSchedule(filter) {
+  const grid = document.getElementById('scheduleGrid');
+  const data = filter === 'all' ? scheduleData : scheduleData.filter(r => r.type === filter);
+  grid.innerHTML = data.map(r => `
+    <div class="schedule-row">
+      <div class="sched-time">${r.time}</div>
+      <div>
+        <div class="sched-class">${r.name}</div>
+        <div class="sched-instructor">${r.instructor}</div>
+      </div>
+      <div class="sched-instructor" style="font-size:0.82rem;">${r.instructor.split(' ').slice(-1)[0]}</div>
+      <div><span class="sched-level ${levelClass[r.level]}">${r.level}</span></div>
+      <div class="sched-spots"><strong>${r.spots}</strong> spots</div>
+    </div>
+  `).join('');
+}
+
+function filterSchedule(type, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSchedule(type);
+}
+
+renderSchedule('all');
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background = '#7A9E7E';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+}
+
+// Sticky nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(44,44,42,0.08)' : 'none';
+});
+</script>
 </body>
 </html>
